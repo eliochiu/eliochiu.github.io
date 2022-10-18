@@ -5,19 +5,19 @@ header-img: img/home-bg.jpg
 email: elio_chiu@163.com
 description: "A whole new world"
 keyword: "elio, eliochiu, @elio, Elio Blog, 博客, 个人网站"
-url: "https://eliochiu.github.io"              # your host, for absolute URL
-baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
+url: "https://eliochiu.github.io"        # your host, for absolute URL
+baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
 future: true
 
 # SNS settings
 RSS: true
-#weibo_username:     huxpro
-#zhihu_username:     huxpro
-github_username:    eliochiu
-#twitter_username:   huxpro
-#facebook_username:  huxpro
+#weibo_username:     
+#zhihu_username:     
+github_username: eliochiu
+#twitter_username:  
+#facebook_username:  
 #linkedin_username:  firstname-lastname-idxxxx
 mail: elio_chiu@163.com
 
@@ -28,8 +28,8 @@ mail: elio_chiu@163.com
 highlighter: rouge
 permalink: pretty
 paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md","README.zh.md"]
-anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+exclude: ["less", "node_modules", "Gruntfile.js", "package.json", "README.md", "README.zh.md"]
+anchorjs: true       # if you want to customize anchor. check out line:181 of `post.html`
 # If you have timezone issue (e.g. #68) in China, uncomment to use this:
 #timezone: CN
 
@@ -105,14 +105,5 @@ friends: [
     # {
     #     title: "Matrixkook",
     #     href: "https://matrixkook.github.io"
-    # }, {
-    #     title: "bazoka13",
-    #     href: "https://bazoka13.github.io/"
-    # }, {
-    #   title: "Coekjan",
-    #   href: "https://coekjan.github.io/"
-    # }, {
-    #   title: "Thysrael",
-    #   href: "https://thysrael.github.io/"
     # }
 ]
