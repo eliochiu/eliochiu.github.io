@@ -99,11 +99,22 @@ HTML标签内可以指定属性，用来规定有关该标签的信息。\\
 
 ### meta的属性
 
-meta常用的属性有两组：`name + content`和`http-equiv + content`
+meta常用的属性`charset`、`name`、`content`、`http-equiv`等。
+
+#### charset
+`charset`用于指定页面使用的字符集，通常为`utf-8`，具体语法为：
+```html
+<meta charset="utf-8">
+```
+
+`charset`是H5提供的新属性，替换了早期版本中使用`http-equiv`设置字符集的方法：
+```html
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8>
+```
 
 #### name
 
-name属性用于描述网页，content属性以便于搜索引擎分类和查找信息。
+`name`属性用于描述网页，`content`属性以便于搜索引擎分类和查找信息。
 
 - `author`：用来表示网页作者的名字，可以是某个组织或机构。
 - `description`：网页的描述信息，可显示在搜索引擎的标题栏下。
@@ -112,9 +123,20 @@ name属性用于描述网页，content属性以便于搜索引擎分类和查找
     - `width`：表示viewport的宽度为设备宽度。
     - `initial-scale`：表示设备宽度与viewport宽度之间的缩放比例。
 - `robots`：表示爬虫对此页面的处理行为。
-    - `all`：
+    - `all`：文件被检索且页面上的链接可以查询
+    - `index`：文件可以被检索
+    - `follow`：文件上的链接可以查询
+    - `noindex`：文件不可以被检索
+    - `nofollow`：文件上的链接不可以查询
+    - `none`：搜索引擎忽略此网页
 
+#### http-equiv
 
+`http-equiv`属性用于提供了HTTP协议的相应头报文。给浏览器提供一些有用的信息，以帮助网页正确地显示内容，而`content`就是`http-equiv`所对应的内容。
+
+- `content-type`：`content-type`是HTTP请求响应头和请求头的字段。当作为请求头时，规定文档的字符编码。
+- `default-style`：规定要使用的预定义的样式表
+- `refresh`：定义文档自动刷新的时间间隔。（注：`refresh`属性要慎用，它会使得页面不受用户控制。）
 
 
 
