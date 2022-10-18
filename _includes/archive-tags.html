@@ -1,0 +1,56 @@
+<a class="tag-button--all" data-encode="">
+	Show All
+	<sup>{{site.posts.size}}</sup>
+</a>
+
+{%- assign tag_groups = "" | split: '' -%}
+
+{% comment %} tag = tag_name@tag_group {% endcomment %}
+{% comment %} Collect top tags {% endcomment %}
+{%- for tag in site.tags -%}
+    {%- assign cur_tag_group = tag[0] | split: '@' | slice: -1 -%}
+	{%- assign tag_groups = tag_groups | push: cur_tag_group -%}
+{%- endfor -%}
+
+{%- assign tag_groups = tag_groups | uniq | sort -%}
+
+{%- for tag_group in tag_groups -%}
+	{%- assign top_tag_ui = "" | split: '' -%}
+	{%- assign tag_group_len = tag_group | size | plus: 1 -%}
+
+	{%- for tag in site.tags -%}
+		{%- assign cur_tag_group = tag[0] | split: '@' | slice: -1 -%}
+
+		{%- if cur_tag_group[0] == tag_group -%}
+			{%- assign tag_name_len = tag[0] | size | minus: tag_group_len -%}
+			
+			{%- capture tag_ui -%}
+				<a data-sort="{{ site.posts.size | minus: tag[1].size | prepend: '0000' | slice: -4, 4 }}"
+								data-encode="{{ tag[0] | strip | url_encode }}" class="tag-button" title="{{tag[0]}}"
+								rel="{{ tag[1].size }}">
+					{{ tag[0] | slice: 0, tag_name_len }}
+					<sup>{{tag[1].size}}</sup>
+				</a>
+			{%- endcapture -%}
+
+			{%- assign top_tag_ui = top_tag_ui | push: tag_ui -%}
+		{%- endif -%}
+	{%- endfor -%}
+
+	<div>
+		<span class="fa listing-seperator">
+			<span class="tag-text tag-collapse-toggle"
+					data-toggle="collapse"
+					data-target="#{{tag_group}}"
+					onselectstart="return false"
+					style="position:relative; left: -0.5em">
+				{{tag_group}}
+			</span>
+		</span>
+		<br>
+		<div id="{{tag_group}}" class="collapse in tag-collapse-body">
+			{{ top_tag_ui | sort }}
+		</div>
+	</div>
+
+{%- endfor -%}

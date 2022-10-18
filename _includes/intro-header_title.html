@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-lg-offset-0 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+                <div class="tags">
+                    {% for tag in page.tags %}
+                        {%- assign cur_tag_group = tag | split: '@' | slice: -1 -%}
+                        {%- assign tag_group_len = cur_tag_group[0] | size | plus: 1 -%}
+                        {%- assign tag_name_len = tag | size | minus: tag_group_len -%}
+
+                        <a class="tag"
+                           href="{{ site.baseurl }}/archive/?tag={{ tag | url_encode }}"
+                           title="{{ tag | slice: 0, tag_name_len }}">{{ tag | slice: 0, tag_name_len }}</a>
+                    {% endfor %}
+                </div>
+
+                {%- assign _title_first_char = page.title | slice: 0 -%}
+                {%- assign _page_title = page.title -%}
+                {%- if _title_first_char == '「' -%}
+                    {%- assign slice_space = page.title | split: '」' | last | split: ' ' -%}
+                    <h3 class="leading-heading">{{ page.title | split: '」' | first | append: '」 ' | append: slice_space[0] }}</h3>
+                    {%- assign _page_title = slice_space | shift | join: ' ' -%}
+                {%- endif -%}
+                <h1>{{ _page_title }}</h1>
+                {% comment %} always create a h2 for keeping the margin {% endcomment %}
+                <h2 class="subheading">{{ page.subtitle }}</h2>
+                <span class="meta">Posted by {% if page.author %}{{ page.author }}{% else %}{{ site.title }}{% endif %} on {{ page.date | date: "%B %-d, %Y" }}</span>
+            </div>
+        </div>
+    </div>
+</div>

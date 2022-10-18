@@ -1,0 +1,82 @@
+---
+title: Archive
+layout: default
+description: 「 文章分拣处 」
+header-img: "img/tag-bg3.jpg"
+---
+
+<!--
+	 Credits: this page shamelessly borrowed a lot from:
+	 https://github.com/kitian616/jekyll-TeXt-theme
+-->
+<!-- Page Header -->
+{% include intro-header.html type='page'%}
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<div id='tag_cloud' class="tags tags-sup js-tags">
+				<div class='tag-section'> {% include archive-tags.html identifier="Tags" %} </div>
+			</div>
+
+			<hr>
+
+			<!-- Article List -->
+			<div class="mini-post-list js-result d-none">
+				{%- assign _sorted_list = site.posts | group_by: 'date' -%}
+
+				{%- for _article_group in _sorted_list -%}
+					{%- assign _article_list = _article_group.items | sort: 'title' | reverse -%}
+					{%- assign _out_loop_first = forloop.first -%}
+
+					{%- for _article in _article_list -%}
+
+						{%- assign _tags = '' -%}
+						{%- for _tag in _article.tags -%}
+							{%- assign _tag_encode = _tag | strip | url_encode -%}
+							{%- if forloop.last -%}
+								{%- assign _tags = _tags | append: _tag_encode -%}
+							{%- else -%}
+								{%- assign _tags = _tags | append: _tag_encode | append: ',' -%}
+							{%- endif -%}
+						{%- endfor -%}
+
+						{% comment %} group by year {% endcomment %}
+						{%- assign _currentdate = _article.date | date: '%Y' -%}
+						{%- if _currentdate != _date -%}
+							{%- unless _out_loop_first -%}</div></section>{%- endunless -%}
+							<section>
+								<span class="fa listing-seperator">
+									<span class="tag-text tag-collapse-toggle"
+										data-toggle="collapse"
+										data-target="#{{ _currentdate }}"
+										onselectstart="return false"
+										style="position:relative; left: -0.5em">
+											{{ _currentdate }}
+									</span>
+								</span>
+								<div id="{{ _currentdate }}" class="collapse in tag-collapse-body">
+								{%- assign _date = _currentdate -%}
+						{%- endif -%}
+
+						<div class="post-preview item" data-tags="{{ _tags }}">
+							<a href="{{ _article.url | prepend: site.baseurl }}">
+								<h2 class="post-title">
+									{{ _article.title }}
+								</h2>
+								{% if _article.subtitle %}
+									<h3 class="post-subtitle">
+										{{ _article.subtitle }}
+									</h3>
+								{% endif %}
+							</a>
+							<hr>
+						</div>
+					{%- endfor -%}
+					{%- if forloop.last -%}</div></section>{%- endif -%}
+				{%- endfor -%}
+			</div>
+		</div>
+	</div>
+</div>

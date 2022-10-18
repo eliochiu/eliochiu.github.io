@@ -1,0 +1,16 @@
+---
+layout: page
+title: "About"
+description: "「 我 」"
+header-img: "img/about-bg4.jpg"
+multilingual: false
+sidebar: true
+---
+
+<!-- Chinese Version -->
+<div class="zh post-container">
+    {% capture about_zh %}{% include about/zh.md %}{% endcapture %}
+    {{ about_zh | markdownify }}
+</div>
+
+{% include comments.html %}
