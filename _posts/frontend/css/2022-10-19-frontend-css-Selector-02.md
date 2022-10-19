@@ -3,7 +3,7 @@ layout: "post"
 title: "「前端开发」- CSS-Selector-02"
 subtitle: "CSS选择器 —— 复合选择器"
 author: "eliochiu"
-date: 2022-10-18
+date: 2022-10-19
 
 tags: ["前端开发@Tags", "CSS@Languages", "FrontEnd@Tags"]
 lang: zh
@@ -77,77 +77,69 @@ ul > li {
 > 子选择器只能选择子元素，不能选中非子元素的后代元素
 
 ```css
-div >  {
+ul > li {
     color: pink;
 }
 ```
-
-
+```html
+<ul>
+    <li>1</li>
+    <li>
+        <ol>
+            <li>2-1</li>
+            <li>2-2</li>
+        </ol>
+    </li>
+</ul>
+```
+虽然上述结构中有三个`li`元素，但只有第一个`li`元素会变为粉色，因为只有他才是`ul`的子元素。
 
 
 ## 后代选择器
+为了实现给某一元素的后代元素指定样式，我们需要使用后代选择器。语法为`ancestor_name descendant_name{}`
 
+```css
+ul > li {
+    color: pink;
+}
+```
+该选择器会将ul内的所有li都指定为粉色。
 
 
 ## 相邻兄弟选择器
+相邻兄弟选择器可以选择某一元素的下一个兄弟，语法`sbling_name1 + sbling_name2{}`
+
+```css
+#first + span {
+    color: pink;
+}
+```
+```html
+<div>
+    <span id="first">1</span>
+    <span id="second">2</span>
+    <span id="third">3</span>
+</div>
+```
+只有ID为`second`的`span`元素会被选中，而`third`不会被选中，因为它和`first`不构成相邻关系。
 
 
 ## 通用兄弟选择器
 
-* 后代元素选择器：`父元素 后代元素{}`。例如：
+为了实现给某一元素后的所有兄弟元素指定样式，则可以使用通用兄弟选择器。语法为：`sbling_name1 ～ sbling_name2{}`
 ```css
-div span {
-    color: red;
+#first ～ span {
+    color: pink;
 }
 ```
 ```html
 <div>
-    <span>1</span>
-    <p>
-        <span>2</span>
-    </p>
+    <span id="first">1</span>
+    <span id="second">2</span>
+    <span id="third">3</span>
 </div>
 ```
-上述代码将文字`1、2`均设置为红色。
-
-* 子元素选择器：`父元素 > 子元素{}`。例如：
-```css
-div > span {
-    color: red;
-}
-```
-```html
-<div>
-    <span>1</span>
-    <p>
-        <span>2</span>
-    </p>
-</div>
-```
-上述代码将文字`1`设置为红色，因为`<p>`内的`<span>`不是`<div>`的子元素。
-
-* 并集选择器：`条件1, 条件2{}`。例如：
-```css
-div, p {
-    color: red;
-}
-```
-```html
-<div>1</div>
-<span>2</span>
-<p>3</p>
-```
-上述代码将文字`1、3`均设置为红色。
-
-* 伪类选择器：`:类名{}`
-  * `:link`：选中未点击过的链接
-  * `:visited`：选中访问过的链接
-  * `:hover`：选中光标移动的元素
-  * `:active`：选中鼠标点击瞬间的元素
-  * `:focus`：选取获取焦点的表单元素
-
-
-
+ID为`second`和`third`的`span`元素都会被选中。
 
 
 
