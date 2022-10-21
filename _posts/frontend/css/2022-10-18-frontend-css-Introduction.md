@@ -5,7 +5,7 @@ subtitle: "CSS简介"
 author: "eliochiu"
 date: 2022-10-18
 
-tags: ["前端开发@Tags", "CSS@Languages", "FrontEnd@Tags"]
+tags: ["前端开发@Tags", "CSS@Languages"]
 lang: zh
 catalog: true
 header-image: ""

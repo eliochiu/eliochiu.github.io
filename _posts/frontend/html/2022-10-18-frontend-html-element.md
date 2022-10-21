@@ -5,7 +5,7 @@ subtitle: "HTML标签"
 author: "eliochiu"
 date: 2022-10-18
 
-tags: ["前端开发@Tags", "HTML@Languages", "FrontEnd@Tags"]
+tags: ["前端开发@Tags", "HTML@Languages"]
 lang: zh
 catalog: true
 header-image: ""
