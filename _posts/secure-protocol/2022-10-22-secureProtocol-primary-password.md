@@ -27,7 +27,7 @@ katex: true
 - 链路攻击：敌手在链路上直接监听用户的明文口令。
 
 ## 使用单向函数
-主机$H$初始化用户$U$后，不再保存用户的明文口令，而是保存用户口令的单向函数值（`one-way function`），如哈希函数值。字典中存储的信息为：$(ID_U, OWF(PW_U))$：
+主机$H$初始化用户$U$后，不再保存用户的明文口令，而是保存用户口令的单向函数值（*one-way function*），如哈希函数值。字典中存储的信息为：$(ID_U, OWF(PW_U))$：
 
 协议流程：
 - $U\rightarrow H:ID_U$
@@ -64,7 +64,7 @@ katex: true
 协议流程：
 - $U\rightarrow H:ID_U$
 - $H\rightarrow U:$ "请输入口令"
-- $U\rightarrow H:Token \leftarrow (salt, PW_U \prime)$
+- $U\rightarrow H:Token \leftarrow OWF(salt, PW_U \prime)$
 - $H\rightarrow U:$ 验证$Token == OWF(salt, PW_U)$
 
 协议面临两类攻击：
@@ -78,5 +78,26 @@ katex: true
 
 ## 使用哈希链
 
+在线的窃听之所以能成功，是因为用户只使用一个固定的$Token$进行认证，一旦泄漏，敌手可以一劳永逸地登录系统。如果用户每次登录使用的$Token$都不一致，则在一定程度上可以规避窃听的攻击。
 
-## EKE协议
+一次性口令：用户每次登录都使用不同的“口令”，即使本次的口令被窃听获取，下次不再使用，也不会影响下次的认证。
+
+**初始化：**
+- 主机$H$给用户$U$口令$PW_U$，并保存该次用户初始记录$(ID_U, n, Hash^n(PW_U))$
+- *ID_U*是用户*U*的身份信息
+- $n$是一个较大的整数，例如$n=1000$
+- $Hash$为哈希函数，$Hash^n$代表使用哈希函数运行$n$次
+- 用户只需记住口令$PW_U$，用户每次登录时主机都会更新用户的口令信息。
+
+**协议第一次运行：**
+- 用户$U$给主机$H$发送$Hash^{n-1}(PW_U)$，并发送给主机
+- 主机收到$Hash^{n-1}(PW_U)$后，计算$Hash(Hash^{n-1}(PW_U))$，和存储的$Hash^{n}(PW_U)$比对
+- 最后，更新口令记录为$(ID_U, n-1, Hash^{n-1}(PW_U))$
+
+**协议第$c$次运行：**
+- $U\rightarrow H:ID_U$
+- $H\rightarrow U: c$ "请输入口令"
+- $U\rightarrow H:Token \leftarrow Hash^{c - 1}(PW_U)$
+- $H$计算$Hash(Hash^{c - 1}(PW_U))$是否等于$Hash^{c}(PW_U)$，并更新信息为$(ID_U, c-1, Hash^{c-1}(PW_U))$
+
+计算过程中，计数器的值是动态变化的，每登录一次就减一，当计数器变成0时，用户与主机重新初始化。
