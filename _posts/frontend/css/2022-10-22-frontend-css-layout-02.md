@@ -107,6 +107,37 @@ border和padding一样，具有多边样式和单边样式，例如`border-style
 
 ![](/img/in-post/post-frontend-css/border-radius2.png#pic_center)
 
+### 边框实现三角形
+如果我们为宽度和高度都为0的盒子指定边框，会发生什么呢？
+```css
+.box {
+    width: 0;
+    height: 0;
+    border-left: 100px solid red;
+    border-right: 100px solid deeppink;
+    border-top: 100px solid pink;
+    border-bottom: 100px solid orangered;
+}
+```
+将得到以下的效果：
+![](/img/in-post/post-frontend-css/triangle.png#pic_center)
+
+因此，我们可以通过下面的方法来绘制一个不同方向的三角：
+```css
+.box {
+    width: 0;
+    height: 0;
+    border: 100px solid transparent;
+    border-left-color: deeppink;
+}
+```
+
+![](/img/in-post/post-frontend-css/triangle2.png#pic_center)
+
+
+
+
+
 ## 外边距
 
 外边距常用处理相邻盒子之间的摆放间隙，外边距在元素的周围添加空白，外边距的设置与内边距类似，这里不再赘述。
