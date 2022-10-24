@@ -16,7 +16,7 @@ katex: true
 <!-- ![](/img/in-post/post-frontend-css/position-relative1.png#pic_center) -->
 
 ## 弹性盒基础
-弹性盒布局（*Flexible box*）是一种强大的布局方式，我们通过弹性盒设置空间的分布方式、元素之间的排列顺序，可以轻易地实现元素的横向、纵向、折行布局。
+弹性盒布局（*flexible box*）是一种强大的布局方式，我们通过弹性盒设置空间的分布方式、元素之间的排列顺序，可以轻易地实现元素的横向、纵向、折行布局。
 
 弹性盒依赖父子关系。在元素上声明`display: flex`或`display: inline-flex`可以使该元素变成弹性容器（*flexible container*），弹性容器中的元素称为弹性元素（*flexible item*）。
 
@@ -24,6 +24,11 @@ katex: true
 
 ## 弹性容器属性
 弹性容器属性是作用在父盒子（弹性容器）上的属性，主要用于控制其内部弹性元素的排列方式，分别为`flex-direction`, `flex-wrap`, `flex-flow`, `justify-content`, `align-items`, `align-content`。
+
+### 弹性容器的轴
+弹性容器有两条轴，分别为主轴和交叉轴。默认情况下，主轴是从左到右排列，交叉轴从上到下排列。元素不能占满一行时，沿主轴排列；元素需要换行时，从下一行主轴的起始端开始排列。当更改弹性容器属性时，会更换轴的方向，甚至会更换轴的位置，具体规则参见下表：
+
+![](/img/in-post/post-frontend-css/flex-axis.png#pic_center)
 
 ### flex-direction
 `flex-direction`决定了弹性元素在弹性容器内部的排列方向，共有下列属性值：
@@ -37,8 +42,8 @@ katex: true
 ### flex-wrap
 `flex-wrap`规定了当一行无法放置弹性元素时，该如何显示，他有下列属性值：
 - `nowrap`：默认换行方式，表示不换行，此时元素的宽度失效，所有元素会自适应地挤在一行中。
-- `wrap`：换行，即如果一行放不下，会自动的挤到下一行。
-- `wrap-reverse`：反向换行，具体参见下列图示。
+- `wrap`：换行，即如果一行放不下，会自动的挤到第一行的下面。
+- `wrap-reverse`：反向换行，换行的内容位于di一行的上面。具体参见下列图示。
 
 **no-wrap**
 <img src='/img/in-post/post-frontend-css/flex-wrap1.png'>
@@ -80,19 +85,18 @@ katex: true
 **space-evenly**
 <img src='/img/in-post/post-frontend-css/flex-justify6.png' width="50%">
 
-
 ### align-items
 `align-items`属性用于规定元素在交叉轴上的排列方式，他有如下属性值：
 - `flex-start`：默认的对齐方式。在交叉轴上顶部对齐。
 - `center`：在交叉轴上居中对齐。
 - `flex-end`：在交叉轴上底部对齐。
-- `baseline`：在交叉轴上按文字基线对齐。
+- `baseline`：在交叉轴上按第一行元素的文字基线对齐。
 - `stretch`：在交叉轴上拉伸对齐。
 
 <img src='/img/in-post/post-frontend-css/flex-align.png'>
 
 ### align-content
-`align-content`属性指定垂直轴上的额外空间如何分配到弹性元素行之间和周围。
+`align-content`属性指定垂直轴上的额外空间如何分配到弹性元素行之间和周围，适用于分多行显示的弹性容器。
 
 `align-content`和`align-items`虽然都是有关垂直轴上对齐方式的属性，但是`align-content`更关注如何实现行与行之间的对齐，而不是像`align-items`那样的元素与元素之间的对齐。
 
@@ -105,7 +109,7 @@ katex: true
 - `space-between`：行在交叉轴上按两端对齐。
 - `space-around`：保证每一行在交叉轴上两侧的距离相等，行的间隙是行和容器间隙的2倍。
 - `space-evenly`：保证每一行在交叉轴上两侧的距离相等，行的间隙和行和容器间隙相等。
-- `stretch`：行在交叉轴上拉伸对齐。
+- `stretch`：行在交叉轴上拉伸对齐，将所有可拉伸的元素拉伸到和最高的元素一样高（可拉伸元素是指没有指定`min-width`, `max-width`）属性的元素。
 
 <img src='/img/in-post/post-frontend-css/flex-align2.png'>
 
@@ -141,7 +145,7 @@ katex: true
 ### align-itself
 `align-itself`属性规定了元素依照自身想法对齐。
 
-弹性容器中的对齐方式将会应用于所有元素，而`align-itself`可以为元素自身定制对齐方式。
+弹性容器中的对齐方式将会应用于所有元素，而`align-itself`可以为元素自身定制对齐方式，这个属性会覆盖容器属性`align-items`。
 
 ### order
 `order`属性指定元素的排序方式。
