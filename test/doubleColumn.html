@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            height: 100px;
+            grid-template-columns: auto 1fr; 
+            /* auto表示自动确认其宽度 */
+        }
+
+        .left {
+            height: 100%;
+            background-color:chartreuse;
+        }
+
+        .right {
+            height: 100%;
+            background-color: coral;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left">左侧不定宽</div>
+        <div class="right">右侧自适应</div>
+    </div>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
