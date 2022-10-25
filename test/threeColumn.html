@@ -7,71 +7,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .container {
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-width: 700px;
+            padding: 0 250px;
+        }
+
+        header {
+            width: 100%;
             height: 100px;
-            background-color: #eebefa;
+            background-color: bisque;
         }
 
-        .left {
+        footer {
+            width: 100%;
             height: 100px;
-            width: 200px;
-            background-color: #f783ac;
-        }
-
-        .content {
-            height: 100px;
-            background-color: #d9480f;
-        }
-
-        .right {
-            height: 100px;
-            width: 200px;
-            background-color: #c0eb75;
-        }
-
-        .left,
-        .content,
-        .right {
-            font-size: 30px;
-            line-height: 100px;
-            text-align: center;
-        }
-
-        .clearfix::after {
-            content: '';
-            display: block;
-            height: 0;
+            background-color: #71c29d;
             clear: both;
-        } 
-
-        .left {
-            float: left;
         }
 
-        .content {
-            width: calc(100% - 500px);
+        .container {
+            height: 300px;
+            padding-left: 200px;
+            padding-right: 150px;
+        }
+
+        .left {
+            margin-left: -100%;
+            left: -200px;
+            width: 200px;
+            background-color: pink;
         }
 
         .right {
-            float: right;
+            margin-left: -150px;
+            right: -150px;
+            width: 150px;
+            background-color: greenyellow;
         }
 
+        .center {
+            width: 100%;
+            background-color: skyblue;
+        }
 
+        .column {
+            position: relative;
+            float: left;
+            height: 300px;
+            line-height: 300px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container clearfix">
-        <div class="left">左</div>
-        <div class="right">右</div>
-        <div class="content">自适应</div>
-
- 
+    <header>header</header>
+    <div class="container">
+        <div class="center column">center</div>
+        <div class="left column">left</div>
+        <div class="right column">right</div>
     </div>
-
+    <footer>footer</footer>
 </body>
 
 </html>
-
 
 
