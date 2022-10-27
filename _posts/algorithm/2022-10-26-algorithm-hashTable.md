@@ -375,7 +375,141 @@ var firstUniqChar = function(s) {
 };
 ```
 
-#### 
+#### 两个数组的交集II
+**给你两个整数数组`nums1`和`nums2`，请你以数组形式返回两数组的交集。返回结果中每个元素出现的次数，应与元素在两个数组中都出现的次数一致（如果出现次数不一致，则考虑取较小值）。可以不考虑输出结果的顺序。**
+
+解决思路：
+- 遍历nums1，建立元素-出现次数映射
+- 遍历nums2，如果元素出现次数大于1，将该元素添加到交集中，并将出现次数减一。
+
+```js
+var intersect = function(nums1, nums2) {
+    if(nums1.length < nums2.length) {
+        return intersect(nums2, nums1);
+    }
+
+    let hashMap = new Map();
+    let ans = [];
+
+    for (num of nums1) {
+        if (hashMap.has(num)) {
+            const frequency = hashMap.get(num);
+            hashMap.set(num, frequency + 1);
+        } else {
+            hashMap.set(num, 1);
+        }
+    }
+
+    for (num of nums2) {
+        if (hashMap.get(num) >= 1) {
+            ans.push(num);
+            hashMap.set(num, hashMap.get(num) - 1);
+        }
+    }
+
+    return ans; 
+}
+```
+
+#### 存在重复元素II
+**给你一个整数数组`nums`和一个整数`k`，判断数组中是否存在两个不同的索引`i`和`j`，满足`nums[i] == nums[j]` 且`abs(i - j) <= k` 。如果存在，返回`true`；否则，返回`false`。**
+```js
+var containsNearbyDuplicate = function(nums, k) {
+    let hashMap = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        if (hashMap.has(nums[i]) && i - hashMap.get(nums[i]) <= k) {
+            return true;
+        }
+        hashMap.set(nums[i], i);
+    }
+    return false;
+};
+```
+
+## 哈希键选取
+上述的算法中，哈希键通常选取为元素，而在有些问题中，我们选取特定的哈希键。哈希键的选取元素很简单：按什么聚合就将其设置为键。
+
+例如：
+- 词频统计中，我们需要对单词列表按照单词聚合，则元素是键，频率是值
+- 如果我们要将元素按照异位词的关系分组，则可以将字符串排列后的值当作键，字符串当作值。
+
+####  字母异位词分组
+**给你一个字符串数组，请你将字母异位词组合在一起。可以按任意顺序返回结果列表。**
+
+**字母异位词是由重新排列源单词的字母得到的一个新单词，所有源单词中的字母通常恰好只用一次。**
+
+本题目中的键为字符串排列后的结果。
+
+```js
+var groupAnagrams = function(strs) {
+    let hashMap = {};
+    for (let s of strs) {
+        const key = s.split("").sort().join("");
+        if (hashMap[key] === undefined) {
+            hashMap[key] = [s];
+        } else {
+            hashMap[key].push(s);
+        }
+    }
+    return Object.values(hashMap);
+};
+```
+
+#### 有效的数独
+**请你判断一个`9x9`的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。**
+
+**数字`1-9`在每一行只能出现一次。**
+**数字`1-9`在每一列只能出现一次。**
+**数字`1-9`在每一个以粗实线分隔的`3x3`宫内只能出现一次。（请参考示例图）**
+
+解题思路：
+- 建立分别建立行、列、块的Map，行、列、块索引作为键，行、列、块集合作为值。
+- 遍历整个矩阵，
+```js
+var isValidSudoku = function(board) {
+    // 建立行、列、块的Map
+    let rowMap = new Map(), colMap = new Map(), blockMap = new Map();
+    for (i = 0; i < 9; i++) {
+        rowMap.set(i, new Set());
+        colMap.set(i, new Set());
+        blockMap.set(i, new Set());
+    }
+
+    // 循环遍历矩阵 
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            const curVal = board[i][j];
+            const block = Math.floor(i / 3) * 3 + Math.floor(j / 3);
+            if (curVal === '.') {
+                continue;
+            }
+
+            if (rowMap.get(i).has(curVal)) {
+                return false;
+            } else {
+                rowMap.get(i).add(curVal);
+            }
+
+            if (colMap.get(j).has(curVal)) {
+                return false;
+            } else {
+                colMap.get(j).add(curVal);
+            }
+
+            if (blockMap.get(block).has(curVal)) {
+                return false;
+            } else {
+                blockMap.get(block).add(curVal);
+            }
+        }
+    }
+    return true;
+};
+```
+
+
+
+
 
 
 
