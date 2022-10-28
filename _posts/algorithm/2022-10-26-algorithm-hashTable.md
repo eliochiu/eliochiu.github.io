@@ -458,9 +458,9 @@ var groupAnagrams = function(strs) {
 #### 有效的数独
 **请你判断一个`9x9`的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。**
 
-**数字`1-9`在每一行只能出现一次。**
-**数字`1-9`在每一列只能出现一次。**
-**数字`1-9`在每一个以粗实线分隔的`3x3`宫内只能出现一次。（请参考示例图）**
+- **数字`1-9`在每一行只能出现一次。**
+- **数字`1-9`在每一列只能出现一次。**
+- **数字`1-9`在每一个以粗实线分隔的`3x3`宫内只能出现一次。**
 
 解题思路：
 - 建立分别建立行、列、块的Map，行、列、块索引作为键，行、列、块集合作为值。
@@ -504,6 +504,47 @@ var isValidSudoku = function(board) {
         }
     }
     return true;
+};
+```
+
+#### 重复的子树
+```js
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode[]}
+ */
+var findDuplicateSubtrees = function(root) {
+    let hashMap = new Map();
+    let res = [];
+    const dfs = (root, res, hashMap) => {
+        if (root === null) {
+            return "";
+        }
+        let str = `${root.val}-${dfs(root.left, res, hashMap)}-${dfs(root.right, res, hashMap)}`;
+
+        if (!hashMap.has(str)) {
+            hashMap.set(str, 1);
+        } else {
+            hashMap.set(str, hashMap.get(str) + 1);
+        }
+
+        if (hashMap.get(str) === 2) {
+            res.push(root);
+        }
+        
+        return str;
+    }
+
+    dfs(root, res, hashMap);
+    return res;
 };
 ```
 
