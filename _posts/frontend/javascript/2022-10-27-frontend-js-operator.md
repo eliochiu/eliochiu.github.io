@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「前端开发」- JS-Operator"
-subtitle: "JavaScript操作符"
+subtitle: "JavaScript —— 操作符"
 author: "eliochiu"
 date: 2022-10-27
 
@@ -136,6 +136,16 @@ undefined == 0 // false
 null == 0 // false
 "5" == 5 // true
 ```
+
+#### 全等和不全等
+ES中三个等号`===`表示全等，全等不仅要求值相等，还要求两个值具有相同的类型：
+```js
+5 == "5" // true
+5 === "5" // false
+```
+
+## 三元操作符
+三元操作符是指条件操作符，它的基本格式是这样的：`condition ? true_statement : false_statement`，如果条件为`true`则执行`true_statement`，否则执行`false_statement`。
 
 
 

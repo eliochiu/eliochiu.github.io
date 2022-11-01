@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「前端开发」- JS-Type"
-subtitle: "JavaScript数据类型"
+subtitle: "JavaScript —— 数据类型"
 author: "eliochiu"
 date: 2022-10-26
 

@@ -1,7 +1,7 @@
 ---
 layout: "post"
 title: "「前端开发」- JS-Introduction"
-subtitle: "JavaScript简介"
+subtitle: "JavaScript —— 简介"
 author: "eliochiu"
 date: 2022-10-25
 
