@@ -147,16 +147,3 @@ ES中三个等号`===`表示全等，全等不仅要求值相等，还要求两�
 ## 三元操作符
 三元操作符是指条件操作符，它的基本格式是这样的：`condition ? true_statement : false_statement`，如果条件为`true`则执行`true_statement`，否则执行`false_statement`。
 
-
-
-
-
-
-
-
-
-
-
-![](/img/in-post/post-frontend-javascript/keywords.png#pic_center)
-
-
