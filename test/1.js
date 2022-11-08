@@ -104,38 +104,63 @@
 // var instance2 = new SubType();
 // console.log(instance2.colors); // ["red", "blue", "green"]
 
-function SuperType(name) {
-  this.name = name;
-  this.colors = ["red", "blue", "green"];
+// function SuperType(name) {
+//   this.name = name;
+//   this.colors = ["red", "blue", "green"];
+// }
+
+// SuperType.prototype.sayName = function () {
+//   console.log(this.name);
+// }
+
+// function SubType() {
+//   // 继承supertype
+//   SuperType.call(this, "Nicholas");
+
+//   // 实例对象属性
+//   this.age = 21;
+// }
+
+// // 继承方法
+// SubType.prototype = new SuperType();
+// // SubType.prototype.constructor = SubType;
+// SubType.prototype.sayAge = function () {
+//   console.log(this.age);
+// }
+
+// var instance1 = new SubType();
+// console.log(instance1.name);  // Nicholas
+// console.log(instance1.age); // 21
+// instance1.sayName(); // Nicholas
+// instance1.sayAge(); // 21
+// instance1.colors.push("yellow");
+// console.log(instance1.colors); // [ 'red', 'blue', 'green', 'yellow' ]
+
+// var instance2 = new SubType();
+// console.log(instance2.colors); // [ 'red', 'blue', 'green']
+
+
+// global.name = "The Window";
+
+// var object = {
+//   name: "My Object",
+//   getNameFunc: function() {
+//     var that = this;
+//     return function() {
+//       return that.name;
+//     };
+//   }
+// };
+
+// console.log(object.getNameFunc()()); // "The Window"
+
+function outputNumbers(count) {
+  (function() {
+    for (var i = 0; i < count; i++) {
+      console.log(i);
+    }
+  })();
+  console.log(i);
 }
 
-SuperType.prototype.sayName = function () {
-  console.log(this.name);
-}
-
-function SubType() {
-  // 继承supertype
-  SuperType.call(this, "Nicholas");
-
-  // 实例对象属性
-  this.age = 21;
-}
-
-// 继承方法
-SubType.prototype = new SuperType();
-// SubType.prototype.constructor = SubType;
-SubType.prototype.sayAge = function () {
-  console.log(this.age);
-}
-
-var instance1 = new SubType();
-console.log(instance1.name);  // Nicholas
-console.log(instance1.age); // 21
-instance1.sayName(); // Nicholas
-instance1.sayAge(); // 21
-instance1.colors.push("yellow");
-console.log(instance1.colors); // [ 'red', 'blue', 'green', 'yellow' ]
-
-var instance2 = new SubType();
-console.log(instance2.colors); // [ 'red', 'blue', 'green']
-
+outputNumbers(5);
