@@ -15,4 +15,4 @@ ltximg/
 _posts/*.html
 _posts/*/*.html
 _posts/*/*/*.html
-test
+test/*.js
