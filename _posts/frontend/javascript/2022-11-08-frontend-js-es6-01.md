@@ -5,7 +5,7 @@ subtitle: "ECMAScript6 —— let、const、块级作用域"
 author: "eliochiu"
 date: 2022-11-08
 
-tags: ["前端开发@Tags", "JavaScript@Languages"]
+tags: ["前端开发@Tags", "ES6@Tags","JavaScript@Languages"]
 lang: zh
 catalog: true
 header-image: ""
