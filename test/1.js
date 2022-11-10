@@ -164,4 +164,17 @@
 // }
 
 // outputNumbers(5);
-console.log(...[1, 2, 3])
+// console.log(...[1, 2, 3])
+
+// var foo = 'bar';
+// var baz = {foo};
+// console.log(baz);
+
+// function f(x, y) {
+//     return {x, y};
+// }
+
+// console.log(f(1, 2));
+
+console.log(Object.is('foo', 'foo'));
+console.log(Object.is({}, {}));
