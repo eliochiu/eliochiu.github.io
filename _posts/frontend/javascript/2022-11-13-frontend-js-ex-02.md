@@ -1,7 +1,7 @@
 ---
 layout: "post"
-title: "「前端开发」- JS-EX-01"
-subtitle: "JavaScript —— 练习1"
+title: "「前端开发」- JS-EX-02"
+subtitle: "JavaScript —— 练习2"
 author: "eliochiu"
 date: 2022-11-13
 
@@ -169,6 +169,7 @@ console.log(obj)
 
 ### 11 全局上下文
 JavaScript 全局执行上下文为你做了两件事：全局对象和 this 关键字。
+
 结果：对。
 
 ----
