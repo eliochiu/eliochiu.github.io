@@ -283,7 +283,7 @@ const myMap = new Map().set('yes', true).set('no', false);
 strMapToObj(myMap); // {yes: true, no: false}
 ```
 
-### 对象转`Map`
+### 对象转Map
 ```js
 function objToStrMap(obj) {
     let strMap = new Map();

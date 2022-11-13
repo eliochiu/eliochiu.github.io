@@ -13,7 +13,7 @@ header-style: text
 katex: true
 ---
 
-### 01
+### 01 变量提升
 ```js
 function sayHi() {
     console.log(name);
@@ -31,7 +31,7 @@ sayHi();
 
 ----
 
-### 02
+### 02 块级作用域
 ```js
 for (var i = 0; i < 3; i++) {
   setTimeout(() => console.log(i), 1)
@@ -49,7 +49,7 @@ for (let i = 0; i < 3; i++) {
 
 ----
 
-### 03
+### 03 箭头函数
 ```js
 const shape = {
   radius: 10,
@@ -72,7 +72,7 @@ shape.perimeter()
 
 ----
 
-### 04
+### 04 类型转换
 ```js
 +true;
 !"Lydia";
@@ -85,7 +85,7 @@ shape.perimeter()
 
 ----
 
-### 05
+### 05 对象访问
 ```js
 const bird = {
   size: 'small'
@@ -108,7 +108,7 @@ mouse[bird.size]：首先计算 bird.size，这会得到 small。mouse["small"] 
 
 ----
 
-### 06
+### 06 引用类型
 ```js
 let c = { greeting: 'Hey!' }
 let d
@@ -127,7 +127,7 @@ console.log(d.greeting)
 
 ----
 
-### 07
+### 07 包装类型与等值运算符
 ```js
 let a = 3
 let b = new Number(3)
@@ -147,7 +147,7 @@ new Number() 是一个内建的函数构造器。虽然它看着像是一个 num
 
 ----
 
-### 08
+### 08 类
 ```js
 class Chameleon {
   static colorChange(newColor) {
@@ -166,7 +166,7 @@ freddie.colorChange('orange')
 
 ----
 
-### 09
+### 09 不使用var声明变量
 ```js
 let greeting
 greetign = {} // Typo！ 
@@ -180,7 +180,7 @@ console.log(greetign)
 
 ----
 
-### 10 
+### 10  函数与对象的关系
 ```js
 function bark() {
   console.log('Woof!')
@@ -197,7 +197,84 @@ bark.animal = 'dog'
 
 ----
 
+### 11 构造函数
+```js
+function Person(firstName, lastName) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+}
 
+const member = new Person("Lydia", "Hallie");
+Person.getFullName = function () {
+  return `${this.firstName} ${this.lastName}`;
+}
+
+console.log(member.getFullName());
+```
+结果：`TypeError`
+
+你不能像常规对象那样，给构造函数添加属性。如果你想一次性给所有实例添加特性，你应该使用原型。因此本例中，使用如下方式：
+
+```js
+Person.prototype.getFullName = function () {
+  return `${this.firstName} ${this.lastName}`;
+}
+```
+这才会使 member.getFullName() 起作用。为什么这么做有益的？假设我们将这个方法添加到构造函数本身里。也许不是每个 Person 实例都需要这个方法。这将浪费大量内存空间，因为它们仍然具有该属性，这将占用每个实例的内存空间。相反，如果我们只将它添加到原型中，那么它只存在于内存中的一个位置，但是所有实例都可以访问它！
+
+----
+
+### 12 new关键字
+```js
+function Person(firstName, lastName) {
+  this.firstName = firstName
+  this.lastName = lastName
+}
+
+const lydia = new Person('Lydia', 'Hallie')
+const sarah = Person('Sarah', 'Smith')
+
+console.log(lydia)
+console.log(sarah)
+```
+
+结果：`{firstName: 'Lydia', lastName: 'Hallie'}`和`undefined`
+
+对于 sarah，我们没有使用 new 关键字。当使用 new 时，this 引用我们创建的空对象。当未使用 new 时，this 引用的是全局对象（global object）。
+
+我们说 this.firstName 等于 "Sarah"，并且 this.lastName 等于 "Smith"。实际上我们做的是，定义了 global.firstName = 'Sarah' 和 global.lastName = 'Smith'。而 sarah 本身是 undefined。
+
+----
+
+### 13 事件传播
+事件传播的三个阶段是什么？
+
+答案：在捕获（capturing）阶段中，事件从祖先元素向下传播到目标元素。当事件达到目标（target）元素后，冒泡（bubbling）才开始。
+
+----
+
+### 14 对象原型
+所有对象都有原型。
+
+答案：错误，除了基本对象，所有对象的原型都有原型。
+
+除了基本对象（base object），所有对象都有原型。基本对象可以访问一些方法和属性，比如 .toString。这就是为什么你可以使用内置的 JavaScript 方法！所有这些方法在原型上都是可用的。虽然 JavaScript 不能直接在对象上找到这些方法，但 JavaScript 会沿着原型链找到它们，以便于你使用。
+
+----
+
+### 15 字符串拼接
+```js
+function sum(a, b) {
+  return a + b
+}
+
+sum(1, '2')
+```
+结果：`'12'`
+
+JavaScript 是一种动态类型语言：我们不指定某些变量的类型。值可以在你不知道的情况下自动转换成另一种类型，这种类型称为隐式类型转换（implicit type coercion）。Coercion 是指将一种类型转换为另一种类型。
+
+在本例中，JavaScript 将数字 1 转换为字符串，以便函数有意义并返回一个值。在数字类型（1）和字符串类型（'2'）相加时，该数字被视为字符串。我们可以连接字符串，比如 "Hello" + "World"，这里发生的是 "1" + "2"，它返回 "12"。
 
 
 
