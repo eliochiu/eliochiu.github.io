@@ -99,7 +99,7 @@ ul > li {
 为了实现给某一元素的后代元素指定样式，我们需要使用后代选择器。语法为`ancestor_name descendant_name{}`
 
 ```css
-ul > li {
+ul  li {
     color: pink;
 }
 ```
