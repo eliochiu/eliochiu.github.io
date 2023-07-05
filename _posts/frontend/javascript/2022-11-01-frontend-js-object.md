@@ -43,7 +43,7 @@ alert(obj["name"]); // "Nicholas"
 功能上看，点和中括号没有任何区别。中括号的主要优点是可以通过变量来访问属性，例如：
 ```js
 var prop = "name";
-alert(obj[name]); // "Nicholas"
+alert(obj[prop]); // "Nicholas"
 ```
 如果属性名中包含空格，则只能使用中括号访问属性。
 ```js
