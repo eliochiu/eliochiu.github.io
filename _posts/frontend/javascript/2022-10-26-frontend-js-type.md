@@ -155,7 +155,7 @@ console.log(str);
 var num = 10;
 num.toString();  // "10"
 num.toString(8);  // "12"
-num.toString(18);  // "a"
+num.toString(16);  // "a"
 ```
 
 #### String()
