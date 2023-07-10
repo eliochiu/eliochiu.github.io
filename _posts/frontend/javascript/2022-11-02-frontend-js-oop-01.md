@@ -195,7 +195,7 @@ console.log(p1.sayName === p2.sayName); // false
 ```
 
 #### 原型对象
-任何情况下，只要创建了一个函数，他就会自动获得一个`prototype`属性，这个属性指向他的原型对象；而所有原型对象都会自动获得一个`constuctor`属性，用于指向`prototype1`所在的函数（构造函数），拿前面的例子说，`Person.prototype.constructor = Person`。
+任何情况下，只要创建了一个函数，他就会自动获得一个`prototype`属性，这个属性指向他的原型对象；而所有原型对象都会自动获得一个`constuctor`属性，用于指向`prototype`所在的函数（构造函数），拿前面的例子说，`Person.prototype.constructor = Person`。
 
 创建了自定义的构造函数后，原型对象默认只会获得`constructor`属性，其他属性和方法全部继承自`Object`，
 
@@ -205,9 +205,9 @@ console.log(p1.sayName === p2.sayName); // false
 ```js
 Person.prototype.isPrototypeOf(p1); // true
 ```
-ES5还新增了`Object.getPrototype()`方法来获取某一实例对象的原型对象。例如：
+ES5还新增了`Object.getPrototypeOf()`方法来获取某一实例对象的原型对象。例如：
 ```js
-Object.getPrototype(p1) === Person.prototype; // true
+Object.getPrototypeOf(p1) === Person.prototype; // true
 ```
 
 #### 原型链
