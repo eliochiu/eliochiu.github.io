@@ -155,7 +155,7 @@ Object.values(obj); // ['abc']
 `Object.entries()`返回一个数组，成员是参数对象的所有可遍历的属性（非继承）的键名键值数组。
 ```js
 var obj = { foo: 'bar', baz: 42 };
-Object.values(obj); // [['foo', 'bar'],['baz': 42]];
+Object.entries(obj); // [['foo', 'bar'],['baz': 42]];
 ```
 
 如果原对象的键是`Symbol`类型的，那么它会被忽略。
@@ -165,7 +165,7 @@ var obj = {
     foo: 'abc'
 };
 
-Object.values(obj); // [['foo', 'abc']]
+Object.entries(obj); // [['foo', 'abc']]
 ```
 
 `Object.entries()`方法有很多用途，主要用于遍历对象的属性：
